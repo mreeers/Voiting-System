@@ -6,28 +6,22 @@ using Xunit;
 
 namespace VoitingSystem.Tests
 {
-    public class CounterTest
+    public class CounterManagerTest
     {
         public const string CounterName = "Counter Name";
         public Counter _counter = new Counter{Name = CounterName, Count = 5};
 
         [Fact]
-        public void HasName()
-        {
-            Assert.Equal(CounterName, _counter.Name);
-        }
-
-        [Fact]
         public void GetStatistics_IncludesCounterName()
         {
-            var statistics = _counter.GetStatistics(5);
+            var statistics = new CounterManager().GetStatistics(_counter, 5);
             Assert.Equal(CounterName, statistics.Name);
         }
 
         [Fact]
         public void GetStatistics_IncludesCounterCount()
         {
-            var statistics = _counter.GetStatistics(5);
+            var statistics = new CounterManager().GetStatistics(_counter, 5);
             Assert.Equal(5, statistics.Count);
         }
 
@@ -38,7 +32,7 @@ namespace VoitingSystem.Tests
         public void GetStatistics_ShowPercentageBasedOnDecimalBasedOnTotalCount(int count, int total, double expected)
         {
             _counter.Count = count;
-            var statistics = _counter.GetStatistics(total);
+            var statistics = new CounterManager().GetStatistics(_counter, total);
             Assert.Equal(expected, statistics.Percent);
         }
 
@@ -62,11 +56,7 @@ namespace VoitingSystem.Tests
             public int Count { get; set; }
             public double Percent { get; set; }
 
-            internal Counter GetStatistics(int totalCount)
-            {
-                Percent = CounterManager.RoundUp(Count * 100.0 / totalCount);
-                return this;
-            }
+            
         }
 
         [Theory]
@@ -118,6 +108,12 @@ namespace VoitingSystem.Tests
 
         public class CounterManager
         {
+            public Counter GetStatistics(Counter counter, int totalCount)
+            {
+                counter.Percent = RoundUp(counter.Count * 100.0 / totalCount);
+                return counter;
+            }
+
             public void ResolveExcess(List<Counter> counters)
             {
                 var totalPercent = counters.Sum(x => x.Percent);
@@ -139,7 +135,7 @@ namespace VoitingSystem.Tests
                     lowestCounter.Percent = RoundUp(lowestCounter.Percent + excess);
                 }
             }
-            public static double RoundUp(double num) => Math.Round(num, 2);
+            private static double RoundUp(double num) => Math.Round(num, 2);
         }
 
         
