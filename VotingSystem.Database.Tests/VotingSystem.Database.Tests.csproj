@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sandbox.EFCore\Sandbox.EFCore.csproj" />
     <ProjectReference Include="..\VotingSystem.Application\VotingSystem.Application.csproj" />
   </ItemGroup>
 
