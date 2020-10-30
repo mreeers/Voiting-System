@@ -1,10 +1,8 @@
 ﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using VoitingSystem.Models;
 using Xunit;
 
-namespace VoitingSystem.Tests
+namespace VoitingSystem.Application.Tests
 {
     public class VotingPollInteractorTests
     {
@@ -37,29 +35,6 @@ namespace VoitingSystem.Tests
             _interactor.CreateVotingPoll(_request);
 
             _mockPersistance.Verify(x => x.SaveVotingPoll(poll));
-        }
-    }
-
-    public interface IVotingSystemPersistance
-    {
-        void SaveVotingPoll(VotingPoll votingPoll);
-    }
-
-    public class VotingPollInteractor
-    {
-        private readonly IVotingPollFactory _factory;
-        private readonly IVotingSystemPersistance _persistance;
-
-        public VotingPollInteractor(IVotingPollFactory factory, IVotingSystemPersistance persistance)
-        {
-            _factory = factory;
-            _persistance = persistance;
-        }
-
-        public void CreateVotingPoll(VotingPollFactory.Request request)
-        {
-            var poll = _factory.Create(request);
-            _persistance.SaveVotingPoll(poll);
         }
     }
 }
