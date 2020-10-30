@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using VoitingSystem.Models;
+using VoitingSystem;
+using VotingSystem.Models;
 using Xunit;
 
-namespace VoitingSystem.Tests
+namespace VotingSystem.Tests
 {
     public class VotingPollTest
     {

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using VoitingSystem.Models;
+using VoitingSystem;
+using VotingSystem.Models;
 using Xunit;
 
-namespace VoitingSystem.Tests
+namespace VotingSystem.Tests
 {
     public class CounterManagerTest
     {

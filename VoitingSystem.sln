@@ -5,21 +5,23 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Sandbox\Sandbox.csproj", "{89F6D0C2-7E12-44FC-9716-C8CBE21920B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoitingSystem.Tests", "VoitingSystem.Tests\VoitingSystem.Tests.csproj", "{2D80E20A-AE04-410E-82B8-2E8FD2C6ED2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingSystem.Tests", "VoitingSystem.Tests\VotingSystem.Tests.csproj", "{2D80E20A-AE04-410E-82B8-2E8FD2C6ED2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox.EFCore", "Sandbox.EFCore\Sandbox.EFCore.csproj", "{9046D79C-6BA8-4CB4-8377-C6D33C4FD51F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingSystem", "VotingSystem\VotingSystem.csproj", "{E51B5649-55DF-4F50-9535-E2F7CF502192}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingSystem", "VotingSystem\VotingSystem.csproj", "{E51B5649-55DF-4F50-9535-E2F7CF502192}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingSystem.Application", "VotingSystem.Application\VotingSystem.Application.csproj", "{C2B4F9F9-A1C9-490D-BC1D-BDEAB495E4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingSystem.Application", "VotingSystem.Application\VotingSystem.Application.csproj", "{C2B4F9F9-A1C9-490D-BC1D-BDEAB495E4F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingSystem.Application.Tests", "VotingSystem.Application.Test\VotingSystem.Application.Tests.csproj", "{04A9A228-7F7C-423A-87F3-E6765454CB92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingSystem.Application.Tests", "VotingSystem.Application.Test\VotingSystem.Application.Tests.csproj", "{04A9A228-7F7C-423A-87F3-E6765454CB92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{04324CD3-6F12-487B-99CC-40A370E449BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AC9CD0E4-87B9-4FD8-9744-24A2E305768B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingSystem.Database.Tests", "VotingSystem.Database.Tests\VotingSystem.Database.Tests.csproj", "{8D571E30-1CD0-4E45-AE54-B401DB7A2E2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingSystem.Database.Tests", "VotingSystem.Database.Tests\VotingSystem.Database.Tests.csproj", "{8D571E30-1CD0-4E45-AE54-B401DB7A2E2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingSystem.Database", "VotingSystem.Database\VotingSystem.Database.csproj", "{539796FC-F66E-4A6A-BFF8-E39FE10DACF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{8D571E30-1CD0-4E45-AE54-B401DB7A2E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D571E30-1CD0-4E45-AE54-B401DB7A2E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D571E30-1CD0-4E45-AE54-B401DB7A2E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539796FC-F66E-4A6A-BFF8-E39FE10DACF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539796FC-F66E-4A6A-BFF8-E39FE10DACF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539796FC-F66E-4A6A-BFF8-E39FE10DACF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539796FC-F66E-4A6A-BFF8-E39FE10DACF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{C2B4F9F9-A1C9-490D-BC1D-BDEAB495E4F9} = {04324CD3-6F12-487B-99CC-40A370E449BA}
 		{04A9A228-7F7C-423A-87F3-E6765454CB92} = {AC9CD0E4-87B9-4FD8-9744-24A2E305768B}
 		{8D571E30-1CD0-4E45-AE54-B401DB7A2E2F} = {AC9CD0E4-87B9-4FD8-9744-24A2E305768B}
+		{539796FC-F66E-4A6A-BFF8-E39FE10DACF9} = {04324CD3-6F12-487B-99CC-40A370E449BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A656AF0-4862-438E-B48A-51E21E8DDF0B}

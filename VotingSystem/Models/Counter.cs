@@ -1,4 +1,4 @@
-﻿namespace VoitingSystem.Models
+﻿namespace VotingSystem.Models
 {
     public class Counter
     {

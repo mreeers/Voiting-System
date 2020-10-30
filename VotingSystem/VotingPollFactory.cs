@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using VoitingSystem.Models;
+using VotingSystem.Models;
 
 namespace VoitingSystem
 {

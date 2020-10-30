@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VotingSystem.Application\VotingSystem.Application.csproj" />
     <ProjectReference Include="..\VotingSystem\VotingSystem.csproj" />
   </ItemGroup>
 

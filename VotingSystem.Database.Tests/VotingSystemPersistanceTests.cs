@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VoitingSystem.Application;
-using VoitingSystem.Models;
 using VotingSystem.Database.Tests.Infrastructure;
+using VotingSystem.Models;
 using Xunit;
-using static VotingSystem.Database.Tests.AppDbContextTests;
 
 namespace VotingSystem.Database.Tests
 {
@@ -48,22 +47,53 @@ namespace VotingSystem.Database.Tests
                 }
             }
         }
-        
-    }
 
-    public class VotingSystemPersistance : IVotingSystemPersistance
-    {
-        private readonly AppDbContext _ctx;
-
-        public VotingSystemPersistance(AppDbContext ctx)
+        [Fact]
+        public void PersistsVote()
         {
-            _ctx = ctx;
+            var vote = new Vote { UserId = "user", CounterId = 1 };
+            using (var ctx = DbContextFactory.Create(nameof(PersistsVote)))
+            {
+                var persistance = new VotingSystemPersistance(ctx);
+                persistance.SaveVote(vote);
+            }
+
+            using (var ctx = DbContextFactory.Create(nameof(PersistsVote)))
+            {
+                var savedVote = ctx.Votes.Single();
+                Assert.Equal(vote.UserId, savedVote.UserId);
+                Assert.Equal(vote.CounterId, savedVote.CounterId);
+            }
         }
 
-        public void SaveVotingPoll(VotingPoll votingPoll)
+        [Fact]
+        public void VoteExists_RetirnsFalseWhenNoVote()
         {
-            _ctx.VotingPolls.Add(votingPoll);
-            _ctx.SaveChanges();
+            var vote = new Vote { UserId = "user", CounterId = 1 };
+
+            using (var ctx = DbContextFactory.Create(nameof(VoteExists_RetirnsFalseWhenNoVote)))
+            {
+                var persistance = new VotingSystemPersistance(ctx);
+                Assert.False(persistance.VoteExists(vote));
+            }
+        }
+
+        [Fact]
+        public void VoteExists_RetirnsTrueWhenVoteExists()
+        {
+            var vote = new Vote { UserId = "user", CounterId = 1 };
+
+            using (var ctx = DbContextFactory.Create(nameof(VoteExists_RetirnsTrueWhenVoteExists)))
+            {
+                ctx.Votes.Add(vote);
+                ctx.SaveChanges();
+            }
+
+            using (var ctx = DbContextFactory.Create(nameof(VoteExists_RetirnsTrueWhenVoteExists)))
+            {
+                var persistance = new VotingSystemPersistance(ctx);
+                Assert.True(persistance.VoteExists(vote));
+            }
         }
     }
 }

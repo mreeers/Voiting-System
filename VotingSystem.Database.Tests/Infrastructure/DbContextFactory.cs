@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static VotingSystem.Database.Tests.AppDbContextTests;
+using VotingSystem.Database;
 
 namespace VotingSystem.Database.Tests.Infrastructure
 {

@@ -1,5 +1,5 @@
 ﻿using Moq;
-using VoitingSystem.Models;
+using VotingSystem.Models;
 using Xunit;
 
 namespace VoitingSystem.Application.Tests

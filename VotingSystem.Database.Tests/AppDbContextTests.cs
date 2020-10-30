@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VoitingSystem.Models;
 using VotingSystem.Database.Tests.Infrastructure;
+using VotingSystem.Models;
 using Xunit;
 
 namespace VotingSystem.Database.Tests
@@ -44,22 +43,6 @@ namespace VotingSystem.Database.Tests
             {
                 var savePoll = ctx.VotingPolls.Single();
                 Assert.Equal(poll.Title, savePoll.Title);
-            }
-        }
-
-        public class AppDbContext : DbContext
-        {
-            public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-            {
-            }
-
-            public DbSet<Counter> Counters { get; set; }
-            public DbSet<VotingPoll> VotingPolls { get; set; }
-
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                modelBuilder.Entity<Counter>().Property<int>("Id");
-                modelBuilder.Entity<VotingPoll>().Property<int>("Id");
             }
         }
     }

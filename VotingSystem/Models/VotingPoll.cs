@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace VoitingSystem.Models
+namespace VotingSystem.Models
 {
     public class VotingPoll
     {
