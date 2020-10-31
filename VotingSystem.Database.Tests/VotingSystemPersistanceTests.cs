@@ -18,7 +18,7 @@ namespace VotingSystem.Database.Tests
             {
                 Title = "title",
                 Description = "desc",
-                Counters = new List<Counter> 
+                Counters = new List<Counter>
                 {
                     new Counter { Name = "One"},
                     new Counter { Name = "Two"}
@@ -41,7 +41,7 @@ namespace VotingSystem.Database.Tests
                 Assert.Equal(poll.Description, savePoll.Description);
                 Assert.Equal(poll.Counters.Count(), savePoll.Counters.Count());
 
-                foreach(var name in poll.Counters.Select(x => x.Name))
+                foreach (var name in poll.Counters.Select(x => x.Name))
                 {
                     Assert.Contains(name, savePoll.Counters.Select(x => x.Name));
                 }
@@ -93,6 +93,48 @@ namespace VotingSystem.Database.Tests
             {
                 var persistance = new VotingSystemPersistance(ctx);
                 Assert.True(persistance.VoteExists(vote));
+            }
+        }
+
+        [Fact]
+        public void GetPoll_ReturnsSavePollWithCounter_AndVotesAsCount()
+        {
+            var poll = new VotingPoll
+            {
+                Title = "title",
+                Description = "desc",
+                Counters = new List<Counter>
+                {
+                    new Counter{Name = "One"},
+                    new Counter{Name = "Two"}
+                }
+            };
+
+            using (var ctx = DbContextFactory.Create(nameof(GetPoll_ReturnsSavePollWithCounter_AndVotesAsCount)))
+            {
+                ctx.VotingPolls.Add(poll);
+                ctx.Votes.Add(new Vote { UserId = "a", CounterId = 1 });
+                ctx.Votes.Add(new Vote { UserId = "b", CounterId = 1 });
+                ctx.Votes.Add(new Vote { UserId = "c", CounterId = 2 });
+                ctx.SaveChanges();
+            }
+
+            using (var ctx = DbContextFactory.Create(nameof(GetPoll_ReturnsSavePollWithCounter_AndVotesAsCount)))
+            {
+                var savePoll = new VotingSystemPersistance(ctx).GetPoll(1);
+
+                Assert.Equal(poll.Title, savePoll.Title);
+                Assert.Equal(poll.Description, savePoll.Description);
+                Assert.Equal(poll.Counters.Count(), savePoll.Counters.Count());
+
+                var coutner1 = savePoll.Counters[0];
+                Assert.Equal("One", coutner1.Name);
+                Assert.Equal(2, coutner1.Count);
+
+                var coutner2 = savePoll.Counters[1];
+                Assert.Equal("Two", coutner2.Name);
+                Assert.Equal(1, coutner2.Count);
+
             }
         }
     }

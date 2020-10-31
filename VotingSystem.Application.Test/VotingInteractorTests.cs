@@ -7,13 +7,13 @@ using Xunit;
 
 namespace VoitingSystem.Application.Tests
 {
-    public class VotingIntoractorTests
+    public class VotingInteractorTests
     {
         private Mock<IVotingSystemPersistance> _mockPersistance = new Mock<IVotingSystemPersistance>();
         private readonly VotingInteractor _interactor;
         private readonly Vote _vote = new Vote { UserId = "user", CounterId = 1 };
 
-        public VotingIntoractorTests()
+        public VotingInteractorTests()
         {
             _interactor = new VotingInteractor(_mockPersistance.Object);
         }
@@ -34,6 +34,24 @@ namespace VoitingSystem.Application.Tests
             _interactor.Vote(_vote);
 
             _mockPersistance.Verify(x => x.SaveVote(_vote), Times.Never);
+        }
+    }
+
+    public class VotingInteractor
+    {
+        private readonly IVotingSystemPersistance _persistance;
+
+        public VotingInteractor(IVotingSystemPersistance persistance)
+        {
+            _persistance = persistance;
+        }
+
+        public void Vote(Vote vote)
+        {
+            if (!_persistance.VoteExists(vote))
+            {
+                _persistance.SaveVote(vote);
+            }
         }
     }
 }

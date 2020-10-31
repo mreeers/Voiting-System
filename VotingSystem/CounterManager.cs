@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using VotingSystem;
 using VotingSystem.Models;
 
 namespace VoitingSystem
 {
-    public class CounterManager
+    public class CounterManager : ICounterManager
     {
-        public Counter GetStatistics(Counter counter, int totalCount)
+        public List<CounterStatistics> GetStatistics(ICollection<Counter> counters)
         {
-            counter.Percent = RoundUp(counter.Count * 100.0 / totalCount);
-            return counter;
+            var totalCount = counters.Sum(x => x.Count);
+
+            return counters.Select(x => new CounterStatistics
+            {
+                Name = x.Name,
+                Count = x.Count,
+                Percent = RoundUp(x.Count * 100.0 / totalCount)
+            }).ToList();
         }
 
-        public void ResolveExcess(List<Counter> counters)
+        public void ResolveExcess(List<CounterStatistics> counters)
         {
             var totalPercent = counters.Sum(x => x.Percent);
             if (totalPercent == 100) return;
@@ -36,7 +43,4 @@ namespace VoitingSystem
         }
         private static double RoundUp(double num) => Math.Round(num, 2);
     }
-
-
-
 }
