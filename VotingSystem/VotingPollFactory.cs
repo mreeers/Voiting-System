@@ -4,7 +4,7 @@ using VotingSystem.Models;
 
 namespace VoitingSystem
 {
-    public class VotingPollFactory
+    public class VotingPollFactory : IVotingPollFactory
     {
         public class Request
         {
