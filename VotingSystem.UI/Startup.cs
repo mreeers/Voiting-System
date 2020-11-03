@@ -18,7 +18,8 @@ namespace VotingSystem.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IVotingPollFactory, VotingPollFactory>();
-            services.AddControllers();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +34,8 @@ namespace VotingSystem.UI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
+
                 endpoints.MapDefaultControllerRoute();
 
                 //endpoints.MapGet("/", async context =>
